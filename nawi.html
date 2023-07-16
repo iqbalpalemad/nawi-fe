@@ -1,16 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="nawi.css">
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script src="./nawi.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./nawi.css">
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="./nawi.js"></script>
+<script src="./ajax.js"></script>
 </head>
 <body>
-    <div>
-        Hellow world
+
+<div class="container" >
+  <form id="mainSearchForm" style="display: none;">
+    <div class="row">
+      <div class="col-25">
+        <label for="nameLength">Name length</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="nameLength"  placeholder="Name length">
+      </div>
     </div>
+
+    <div class="row">
+        <div class="col-25">
+          <label for="numberOfVowels">Number of vowels</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="numberOfVowels"  placeholder="Number of vowels">
+        </div>
+    </div>
+
+    <div class="row">
+    <div class="col-25">
+        <label for="numberOfRepeatingCharacter">Number of repeating characters</label>
+    </div>
+    <div class="col-75">
+        <input type="text" id="numberOfRepeatingCharacter" placeholder="Number of repeating characters">
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="col-25">
+        <label for="length">Number of adjacent characters</label>
+    </div>
+    <div class="col-75">
+        <input type="text" id="numberOfAdjacentCharacters" placeholder="Number of adjacent characters">
+    </div>
+    </div>
+    <br>
+    <div class="row">
+      <input type="submit" id="searchName" value="Search">
+    </div>
+  </form>
+
+  <form id="ruleForm">
+    <div class="row">
+        <div class="col-25">
+          <label for="rule">Rule</label>
+        </div>
+        <div class="col-75">
+            <select  id="rule">
+                <option value="includes">Includes</option>
+                <option value="notIncludes">Not Includes</option>
+                <option value="letterAtPosition">Letter At Position</option>
+                <option value="letterInAlphaSet">Letter in alpha set</option>
+                <option value="lettersAreSameAtPosition">Letters are same at position</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-25">
+          <label for="ruleLetter">Letter</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="ruleLetter"  placeholder="Letter">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-25">
+          <label for="letterPosition">Letter position</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="letterPosition"  placeholder="Letter position">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-25">
+          <label for="secondPosition">Second Letter Position</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="secondPosition"  placeholder="Second Letter Position">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-25">
+          <label for="letterSet">Letter set</label>
+        </div>
+        <div class="col-75">
+            <select  id="letterSet">
+                <option value=1>A-J</option>
+                <option value=2>K-T</option>
+                <option value=3>U-Z</option>
+            </select>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <input type="submit" id="filterNames" value="Filter">
+    </div>
+
+    
+  </form>
+</div>
+
 </body>
 </html>
