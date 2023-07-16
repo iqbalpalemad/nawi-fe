@@ -1,11 +1,24 @@
 $(document).ready(function(){
     let names = [];
+    let rulesApplied = [];
     $("#searchName").click(function(e){
         e.preventDefault();
         const nameLength = $("#nameLength").val();
         const numberOfVowels = $("#numberOfVowels").val();
         const numberOfRepeatingCharacter = $("#numberOfRepeatingCharacter").val();
         const numberOfAdjacentCharacters = $("#numberOfAdjacentCharacters").val();
+        if(nameLength && nameLength != ""){
+            rulesApplied.push(`Name leght : ${nameLength}`);
+        }
+        if(numberOfVowels && numberOfVowels != ""){
+            rulesApplied.push(`Number of vowels : ${numberOfVowels}`);
+        }
+        if(numberOfRepeatingCharacter && numberOfRepeatingCharacter != ""){
+            rulesApplied.push(`Number of repeating character : ${numberOfRepeatingCharacter}`);
+        }
+        if(numberOfAdjacentCharacters && numberOfAdjacentCharacters != ""){
+            rulesApplied.push(`Number of adjacent characters ${numberOfAdjacentCharacters}`);
+        }
         const data = {
             length : ( nameLength && nameLength != "" ) ? parseInt(nameLength) : null,
             numberOfVowels : (numberOfVowels && numberOfVowels != "" ) ? parseInt(numberOfVowels) : null,
@@ -17,6 +30,9 @@ $(document).ready(function(){
                 names = data.names ? data.names : [];
                 $("#mainSearchForm").hide();
                 $("#ruleForm").show();
+                const nameCount = names.length;
+                $("#namesCountSpan").text(nameCount);
+                $("#infoDiv").show();
             }
             else{
                 alert("Failed to get names. Please try again");
@@ -70,24 +86,41 @@ $(document).ready(function(){
         switch(rule){
             case "includes" :
                 names = nameIncludes(names,letter);
+                rulesApplied.push(`Name includes letter : ${letter}`);
                 break;
             case "notIncludes" :
                 names = nameNotIncludes(names,letter);
+                rulesApplied.push(`Name not includes letter : ${letter}`);
                 break;
             case "letterAtPosition" :
                 names = letterAtPosition(names,letter,letterPosition);
+                rulesApplied.push(`Letter at position ${letterPosition} is ${letter}`);
                 break;
             case "letterInAlphaSet" :
                 names = letterInAlphaSet(names,letterPosition,letterSet);
+                rulesApplied.push(`Letter at position ${letterPosition} comes in set ${letterSet}`);
                 break;
             case "lettersAreSameAtPosition" :
                 names = lettersAreSameAtPosition(names,letterPosition,secondLetterPosition);
+                rulesApplied.push(`Letters at position ${letterPosition} and ${secondLetterPosition} is same`);
                 break;
             case "lettersAtPositionIsVowel" : 
                 names = lettersAtPositionIsVowel(names,letterPosition);
+                rulesApplied.push(`Leter at position ${letterPosition} is vowel`);
                 break;
         }
+        recreateNameTable(names);
+        recreateRuleTable(rulesApplied);
     })
+
+    $("#showNamesButton").click(function(){
+        createNameTable(names);
+    })
+
+    $("#showRuleButton").click(function(){
+        createRuleTable(rulesApplied);
+    })
+
 })
 
 
@@ -141,4 +174,40 @@ function lettersAtPositionIsVowel(names, position) {
     const char = str.charAt(position - 1).toLowerCase();
     return vowels.includes(char);
   });
+}
+
+function recreateNameTable(names){
+    if($('#nameTableDiv').is(":visible")){
+        createNameTable(names);
+    }
+}
+
+function recreateRuleTable(rules){
+    if($('#ruleTableDiv').is(":visible")){
+        createRuleTable(rules);
+    }
+}
+
+function createNameTable(names){
+    $("#nameTable tbody").empty();
+    $.each(names,function(key,name){
+        let tableRow = `<tr>
+                            <td>${key + 1}</td>
+                            <td>${name}</td>
+                        </tr>`
+        $("#nameTable tbody").append(tableRow);
+    })
+    $("#nameTableDiv").show();
+}
+
+function createRuleTable(rules){
+    $("#ruleTableDiv").show();
+    $("#ruleTable tbody").empty();
+    $.each(rules,function(key,rule){
+        let tableRow = `<tr>
+                            <td>${key + 1}</td>
+                            <td>${rule}</td>
+                        </tr>`
+        $("#ruleTable tbody").append(tableRow);
+    })
 }

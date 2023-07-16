@@ -9,7 +9,11 @@
 </head>
 <body>
 
-<div class="container" >
+<div class="container" > 
+  <div id="infoDiv" style="display: none;">
+    <span id="namesCountSpan"></span> Names found <span id="showNamesButton">Show Name</span>&nbsp;&nbsp;<span id="showRuleButton">Show Rules</span>
+  </div>
+  <br>
   <form id="mainSearchForm">
     <div class="row">
       <div class="col-25">
@@ -120,6 +124,36 @@
 
     
   </form>
+  <br>
+  <br>
+  <div id="nameTableDiv" style="display: none;">
+    <table id="nameTable">
+        <thead>
+            <tr>
+            <th></th>
+            <th>Names</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+  </div>
+  <br>
+  <br>
+  <div id="ruleTableDiv" style="display: none;">
+    <table id="ruleTable">
+        <thead>
+            <tr>
+            <th></th>
+            <th>Rules</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+  </div>
 </div>
 
 </body>
