@@ -141,6 +141,9 @@ $(document).ready(function(){
         $("#navUl li a").removeClass("active");
         $(`#${tab}Div`).show();
         $(this).find("a").addClass("active");
+        if(tab == "random"){
+            getRandomName();
+        }
     })
 
     $("#addNames").click(function(e){
@@ -265,4 +268,17 @@ function createRuleTable(rules){
                         </tr>`
         $("#ruleTable tbody").append(tableRow);
     })
+}
+
+function getRandomName(){
+    sendAjax(`random`,"get",{},function(data){
+        if(data.result){
+            alert(`Random name is ${data.name}`);
+        }
+        else{
+            alert("Name not found");
+        }
+        $("#findTabLi").click();
+    });
+    
 }
