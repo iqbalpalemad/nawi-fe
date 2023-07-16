@@ -140,9 +140,10 @@ $(document).ready(function(){
         $(".divElement").hide();
         $("#navUl li a").removeClass("active");
         $(`#${tab}Div`).show();
-        $(this).find("a").addClass("active");
         if(tab == "random"){
             getRandomName();
+        }else{
+            $(this).find("a").addClass("active");
         }
     })
 
