@@ -150,6 +150,7 @@ $(document).ready(function(){
         const data = {name : names};
         sendAjax('save',"post",data,function(data){
             $("#addNames").find("i").hide();
+            $("#newNames").val("");
             if(data.result){
                 alert("Names saved");
             }
@@ -162,9 +163,10 @@ $(document).ready(function(){
     $("#checkName").click(function(e){
         e.preventDefault();
         $(this).find("i").show();
-        $("#checkName").find("i").hide();
         const name = $("#nameToCheck").val();
         sendAjax(`get/${name}`,"get",{},function(data){
+            $("#checkName").find("i").hide();
+            $("#nameToCheck").val("")
             if(data.result){
                 alert("Name Found");
             }
