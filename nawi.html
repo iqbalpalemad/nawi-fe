@@ -10,7 +10,7 @@
 <body>
 
 <div class="container" >
-  <form id="mainSearchForm" style="display: none;">
+  <form id="mainSearchForm">
     <div class="row">
       <div class="col-25">
         <label for="nameLength">Name length</label>
@@ -52,32 +52,25 @@
     </div>
   </form>
 
-  <form id="ruleForm">
+  <form id="ruleForm" style="display: none;">
     <div class="row">
         <div class="col-25">
           <label for="rule">Rule</label>
         </div>
         <div class="col-75">
             <select  id="rule">
+                <option value="" disabled selected>Select a rule</option>
                 <option value="includes">Includes</option>
                 <option value="notIncludes">Not Includes</option>
                 <option value="letterAtPosition">Letter At Position</option>
                 <option value="letterInAlphaSet">Letter in alpha set</option>
                 <option value="lettersAreSameAtPosition">Letters are same at position</option>
+                <option value="lettersAtPositionIsVowel">Letter At Position is vowel</option>
             </select>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-25">
-          <label for="ruleLetter">Letter</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="ruleLetter"  placeholder="Letter">
-        </div>
-    </div>
-
-    <div class="row">
+    <div class="row" id="letterPositionDiv" style="display: none;">
         <div class="col-25">
           <label for="letterPosition">Letter position</label>
         </div>
@@ -86,7 +79,18 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="ruleLetterDiv" style="display: none;">
+        <div class="col-25">
+          <label for="ruleLetter">Letter</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="ruleLetter"  placeholder="Letter">
+        </div>
+    </div>
+
+
+
+    <div class="row" id="secondPositionDiv" style="display: none;">
         <div class="col-25">
           <label for="secondPosition">Second Letter Position</label>
         </div>
@@ -95,12 +99,13 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="letterSetDiv" style="display: none;">
         <div class="col-25">
           <label for="letterSet">Letter set</label>
         </div>
         <div class="col-75">
             <select  id="letterSet">
+                <option value=0>Select set</option>
                 <option value=1>A-J</option>
                 <option value=2>K-T</option>
                 <option value=3>U-Z</option>

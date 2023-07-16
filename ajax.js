@@ -9,7 +9,6 @@ function sendAjax(url,method,data,callback){
         request['contentType'] = "application/json";
     }
     $.ajax(request).done(function(data){
-        console.log(data);
         callback(data);
     }).fail(function(){
         callback({response : false})
