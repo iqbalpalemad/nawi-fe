@@ -1,5 +1,5 @@
 function sendAjax(url,method,data,callback){
-    const urlBase = 'http://localhost:3000/';
+    const urlBase = 'https://nawi.onrender.com/';
     const request = {
         url : urlBase + url,
         method : method
