@@ -3,6 +3,7 @@ $(document).ready(function(){
     let rulesApplied = [];
     $("#searchName").click(function(e){
         e.preventDefault();
+        $(this).find("i").show();
         const nameLength = $("#nameLength").val();
         const numberOfVowels = $("#numberOfVowels").val();
         const numberOfRepeatingCharacter = $("#numberOfRepeatingCharacter").val();
@@ -33,6 +34,7 @@ $(document).ready(function(){
                 const nameCount = names.length;
                 $("#namesCountSpan").text(nameCount);
                 $("#infoDiv").show();
+                $("#searchName").find("i").hide();
             }
             else{
                 alert("Failed to get names. Please try again");
