@@ -109,16 +109,27 @@ $(document).ready(function(){
                 rulesApplied.push(`Leter at position ${letterPosition} is vowel`);
                 break;
         }
+        $("#namesCountSpan").text(names.length);
         recreateNameTable(names);
         recreateRuleTable(rulesApplied);
     })
 
     $("#showNamesButton").click(function(){
-        createNameTable(names);
+        if($('#nameTableDiv').is(":visible"))
+            $('#nameTableDiv').hide();
+        else{
+            createNameTable(names);
+        }
+        
     })
 
     $("#showRuleButton").click(function(){
-        createRuleTable(rulesApplied);
+        if($('#ruleTableDiv').is(":visible")){
+            $('#ruleTableDiv').hide();
+        }else{
+            createRuleTable(rulesApplied);
+        }
+        
     })
 
 })
