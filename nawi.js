@@ -134,6 +134,46 @@ $(document).ready(function(){
         
     })
 
+    $("#navUl li").click(function(e){
+        e.preventDefault();
+        const tab = $(this).find("a").data("tab");
+        $(".divElement").hide();
+        $("#navUl li a").removeClass("active");
+        $(`#${tab}Div`).show();
+        $(this).find("a").addClass("active");
+    })
+
+    $("#addNames").click(function(e){
+        e.preventDefault();
+        $(this).find("i").show();
+        const names = $("#newNames").val();
+        const data = {name : names};
+        sendAjax('save',"post",data,function(data){
+            $("#addNames").find("i").hide();
+            if(data.result){
+                alert("Names saved");
+            }
+            else{
+                alert("Failed to save names. Please try again");
+            }
+        });
+    })
+
+    $("#checkName").click(function(e){
+        e.preventDefault();
+        $(this).find("i").show();
+        $("#checkName").find("i").hide();
+        const name = $("#nameToCheck").val();
+        sendAjax(`get/${name}`,"get",{},function(data){
+            if(data.result){
+                alert("Name Found");
+            }
+            else{
+                alert("Name not found");
+            }
+        });
+    })
+
 })
 
 
