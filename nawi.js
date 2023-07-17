@@ -275,6 +275,10 @@ function getRandomName(){
     sendAjax(`random`,"get",{},function(data){
         if(data.result){
             alert(`Random name is ${data.name}`);
+            $("#nameLength").val(data.length);
+            $("#numberOfVowels").val(data.numberOfVowels);
+            $("#numberOfRepeatingCharacter").val(data.numberOfRepeatingCharacter);
+            $("#numberOfAdjacentCharacters").val(data.numberOfAdjacentCharacters);
         }
         else{
             alert("Name not found");
