@@ -1,6 +1,7 @@
 $(document).ready(function(){
     let names = [];
     let rulesApplied = [];
+    getRandomName();
     $("#searchName").click(function(e){
         e.preventDefault();
         $(this).find("i").show();
