@@ -1,7 +1,7 @@
 $(document).ready(function(){
     let names = [];
     let rulesApplied = [];
-    getRandomName();
+    checkHealth();
     $("#searchName").click(function(e){
         e.preventDefault();
         $(this).find("i").show();
@@ -287,4 +287,12 @@ function getRandomName(){
         $("#findTabLi").click();
     });
     
+}
+
+function checkHealth(){
+    sendAjax(`health`,"get",{},function(data){
+        if(data.result){
+            alert("Application is up and running");
+        }
+    });
 }
