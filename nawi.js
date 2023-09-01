@@ -22,10 +22,10 @@ $(document).ready(function(){
             rulesApplied.push(`Number of adjacent characters ${numberOfAdjacentCharacters}`);
         }
         const data = {
-            length : ( nameLength && nameLength != "" ) ? parseInt(nameLength) : null,
-            numberOfVowels : (numberOfVowels && numberOfVowels != "" ) ? parseInt(numberOfVowels) : null,
-            numberOfRepeatingCharacter : (numberOfRepeatingCharacter && numberOfRepeatingCharacter != "") ? parseInt(numberOfRepeatingCharacter) : null,
-            numberOfAdjacentCharacters : (numberOfAdjacentCharacters && numberOfAdjacentCharacters != "") ? parseInt(numberOfAdjacentCharacters) : null
+            length : ( nameLength && nameLength != "" ) ? parseInt(nameLength) : -1,
+            numberOfVowels : (numberOfVowels && numberOfVowels != "" ) ? parseInt(numberOfVowels) : -1,
+            numberOfRepeatingCharacter : (numberOfRepeatingCharacter && numberOfRepeatingCharacter != "") ? parseInt(numberOfRepeatingCharacter) : -1,
+            numberOfAdjacentCharacters : (numberOfAdjacentCharacters && numberOfAdjacentCharacters != "") ? parseInt(numberOfAdjacentCharacters) : -1
         }
         sendAjax('search',"post",data,function(data){
             if(data.result){
@@ -152,17 +152,7 @@ $(document).ready(function(){
         e.preventDefault();
         $(this).find("i").show();
         const names = $("#newNames").val();
-        const data = {name : names};
-        sendAjax('save',"post",data,function(data){
-            $("#addNames").find("i").hide();
-            $("#newNames").val("");
-            if(data.result){
-                alert("Names saved");
-            }
-            else{
-                alert("Failed to save names. Please try again");
-            }
-        });
+        saveName(names)
     })
 
     $("#checkName").click(function(e){
@@ -176,9 +166,17 @@ $(document).ready(function(){
                 alert("Name Found");
             }
             else{
+                saveName(name);
                 alert("Name not found");
             }
         });
+    })
+
+    $("input").keyup(function(e){
+        console.log("clicked")
+        if(e.keyCode == 13){
+            $(this).closest(".divElement").find("button").click();
+        }
     })
 
 })
@@ -293,6 +291,20 @@ function checkHealth(){
     sendAjax(`health`,"get",{},function(data){
         if(data.result){
             alert("Application is up and running");
+        }
+    });
+}
+
+function saveName(names){
+    const data = {name : names};
+    sendAjax('save',"post",data,function(data){
+        $("#addNames").find("i").hide();
+        $("#newNames").val("");
+        if(data.result){
+            alert("Names saved");
+        }
+        else{
+            alert("Failed to save names. Please try again");
         }
     });
 }
